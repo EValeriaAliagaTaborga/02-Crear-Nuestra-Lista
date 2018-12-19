@@ -1,10 +1,38 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<todo-input></todo-input>
-<button>Save</button>
+
 <p>The title is: {{ title }}</p>
 <ul>
   <li *ngFor="let item of todoList">
-    {{ item.title }}
+    <!-- pasar parametros entre components-->
+    <todo-item [(itemTitle)]="item"></todo-item>
   </li>
 </ul>
+
+<ul>
+  <li *ngFor="let item of todoList">
+    <!-- pasar parametros entre components-->
+    {{item.title}}
+  </li>
+</ul>
+
+<ul>
+  <li *ngFor="let item of todoList">
+    <!-- pasar parametros entre component hijo a padre-->
+    <todo-item (submit)="addItem($event)"></todo-item>
+  </li>
+</ul>
+<input (change)="cambiarTitulo($event)">
+<button (click)="agregaItem('NuevoItem')">Agregar elemento</button>
+
+
+<!-- DIRECTIVAS-->
+<h1 *ngIf="esMartes">Es martes</h1>
+<h1 *ngIf="excede">mayor a 0 elementos en la lista</h1>
+<h1 [class]="blue">Blue</h1>
+<h1 [ngClass]="{'blue': esMartes}">Turquoise</h1>
+<h1 [ngClass]="['blue', 'bigfont']">Turquoise</h1>
+<button (click)="cambiarColor()">Change color</button>
+<h1 [class]="blue">Blue</h1>
+
+
 <router-outlet></router-outlet>
